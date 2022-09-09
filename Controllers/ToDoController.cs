@@ -27,6 +27,34 @@ namespace ToDoList.Controllers
 
             return View(todoList);
         }
+        [HttpGet]
+
+        public async Task<IActionResult> Index(string Tasksearch, string sortingtask)
+        {
+            ViewData["Gettodolistdetails"] = Tasksearch;
+
+            ViewData["Sortingtask"] = string.IsNullOrEmpty(sortingtask) ? "Content" : "";
+
+            var taskquery = from x in context.ToDoList select x;
+
+            switch (sortingtask)
+            {
+                case "Content":
+                    taskquery = taskquery.OrderBy(x => x.Content);
+                    break;
+                default:
+                    taskquery = taskquery.OrderByDescending(x => x.Content);
+                    break;
+
+            }
+            
+            if (!String.IsNullOrEmpty(Tasksearch))
+            {
+                taskquery = taskquery.Where(x => x.Content.Contains(Tasksearch));
+            }
+            return View(await taskquery.AsNoTracking().ToListAsync());
+
+        }
 
         // GET /todo/create
         public IActionResult Create() => View();
