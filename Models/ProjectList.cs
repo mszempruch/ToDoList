@@ -7,13 +7,12 @@ using System.Threading.Tasks;
 
 namespace ToDoList.Models
 {
-    public class TodoList
+    public class ProjectList
     {
-        public int TodoListId { get; set; }
+        public int Id { get; set; }
         [Required]
-        public string Content { get; set; }
-        public ICollection<ProjectList> ProjectLists { get; set; }
-
+        public string Project { get; set; }
+        public TodoList TodoList { get; set; }
 
     }
 }

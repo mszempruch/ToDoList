@@ -25,16 +25,21 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @item.Content
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edytuj</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Usuń</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.Content
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.TodoListId">Edytuj</a> |
+                    <a asp-action="Delete" asp-route-id="@item.TodoListId">Usuń</a>
+                </td>
+            </tr>
+            
+        }
     </tbody>
 </table>
+<div>
+    <a asp-controller="Project" asp-action="Index">Powrót do listy projektów</a>
+</div>

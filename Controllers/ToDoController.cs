@@ -21,7 +21,7 @@ namespace ToDoList.Controllers
         // GET /
         public async Task<ActionResult> Index()
         {
-            IQueryable<TodoList> items = from i in context.ToDoList orderby i.Id select i;
+            IQueryable<TodoList> items = from i in context.TodoLists orderby i.TodoListId select i;
 
             List<TodoList> todoList = await items.ToListAsync();
 
@@ -35,7 +35,7 @@ namespace ToDoList.Controllers
 
             ViewData["Sortingtask"] = string.IsNullOrEmpty(sortingtask) ? "Content" : "";
 
-            var taskquery = from x in context.ToDoList select x;
+            var taskquery = from x in context.TodoLists select x;
 
             switch (sortingtask)
             {
@@ -80,7 +80,7 @@ namespace ToDoList.Controllers
         // GET /todo/edit/5
         public async Task<ActionResult> Edit(int id)
         {
-            TodoList item = await context.ToDoList.FindAsync(id);
+            TodoList item = await context.TodoLists.FindAsync(id);
             if (item == null)
             {
                 return NotFound(item);
@@ -109,14 +109,14 @@ namespace ToDoList.Controllers
         // GET /todo/delete/5
         public async Task<ActionResult> Delete(int id)
         {
-            TodoList item = await context.ToDoList.FindAsync(id);
+            TodoList item = await context.TodoLists.FindAsync(id);
             if (item == null)
             {
                 TempData["Błąd"] = "Zadanie nie istnieje!";
             }
             else
             {
-                context.ToDoList.Remove(item);
+                context.TodoLists.Remove(item);
                 await context.SaveChangesAsync();
 
                 TempData["Sukces"] = "Zadanie zostało usunięte!";
