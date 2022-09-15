@@ -9,10 +9,11 @@ namespace ToDoList.Models
 {
     public class ProjectList
     {
-        public int Id { get; set; }
+        public int ProjectListId { get; set; }
         [Required]
         public string Project { get; set; }
-        public TodoList TodoList { get; set; }
+        //Relationships
+        public virtual List<TodoList> TodoLists { get; set; }
 
     }
 }

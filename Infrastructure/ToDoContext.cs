@@ -13,9 +13,9 @@ namespace ToDoList.Infrastructure
             : base(options)
         {
         }
+       
         public DbSet<TodoList> TodoLists { get; set; }
 
         public DbSet<ProjectList> ProjectLists { get; set; }
-        
     }
 }

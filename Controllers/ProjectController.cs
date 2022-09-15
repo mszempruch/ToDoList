@@ -21,7 +21,7 @@ namespace ToDoList.Controllers
         // GET /
         public async Task<ActionResult> Index()
         {
-            IQueryable<ProjectList> items = from i in context.ProjectLists orderby i.Id select i;
+            IQueryable<ProjectList> items = from i in context.ProjectLists orderby i.ProjectListId select i;
 
             List<ProjectList> projectList = await items.ToListAsync();
 
@@ -35,22 +35,22 @@ namespace ToDoList.Controllers
 
             ViewData["Sortingproject"] = string.IsNullOrEmpty(sortingproject) ? "Project" : "";
 
-            var projectquery = from x in context.ProjectLists select x;
+            var projectquery = from y in context.ProjectLists select y;
 
             switch (sortingproject)
             {
                 case "Project":
-                    projectquery = projectquery.OrderBy(x => x.Project);
+                    projectquery = projectquery.OrderBy(y => y.Project);
                     break;
                 default:
-                    projectquery = projectquery.OrderByDescending(x => x.Project);
+                    projectquery = projectquery.OrderByDescending(y => y.Project);
                     break;
 
             }
 
             if (!String.IsNullOrEmpty(Projectsearch))
             {
-                projectquery = projectquery.Where(x => x.Project.Contains(Projectsearch));
+                projectquery = projectquery.Where(y => y.Project.Contains(Projectsearch));
             }
             return View(await projectquery.AsNoTracking().ToListAsync());
 

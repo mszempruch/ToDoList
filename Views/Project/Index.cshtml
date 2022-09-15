@@ -9,18 +9,18 @@
 <p>
     <a asp-action="Create">Utwórz nowy projekt zadań do wykonania</a>
 </p>
-<form method="get" asp-action="Index">
-    <p>
-        <input type="search" placeholder="Podaj nazwę projektu" value="@ViewData["Getprojectdetails"]" name="Projectsearch" style="width:500px;" />
-        <input type="submit" value="Wyszukaj" class="btn btn-primary" />
-        <a asp-action="Index">Pokaż wszystkie projekty</a>
-    </p>
-</form>
+    <form method="get" asp-action="Index">
+        <p>
+            <input type="search" placeholder="Podaj nazwę projektu" value="@ViewData["Getprojectdetails"]" name="Projectsearch" style="width:500px;" />
+            <input type="submit" value="Wyszukaj" class="btn btn-primary" />
+            <a asp-action="Index">Pokaż wszystkie projekty</a>
+        </p>
+    </form>
 <table class="table">
     <thead>
         <tr>
             <th>
-                <a asp-action="Index" asp-route-sortingtask="@ViewData["Sortingproject"]">Lista projektów</a>
+                <a asp-action="Index" asp-route-sortingproject="@ViewData["Sortingproject"]">Lista projektów</a>
             </th>
             <th></th>
         </tr>
@@ -32,8 +32,8 @@
                 <a asp-controller="ToDo" asp-action="Index">@item.Project</a>
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edytuj</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Usuń</a>
+                <a asp-action="Edit" asp-route-id="@item.ProjectListId">Edytuj</a> |
+                <a asp-action="Delete" asp-route-id="@item.ProjectListId">Usuń</a>
             </td>
         </tr>
 }

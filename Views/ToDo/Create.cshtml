@@ -18,6 +18,10 @@
                 <span asp-validation-for="Content" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="ProjectListId" class="control-label">Projekt do wykonania</label>
+                <select asp-for="ProjectListId" class ="form-control" asp-items="ViewBag.ProjectListId"></select>
+            </div>
+            <div class="form-group">
                 <input type="submit" value="Dodaj" class="btn btn-primary" />
             </div>
         </form>

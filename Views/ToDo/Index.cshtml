@@ -4,22 +4,27 @@
     ViewData["Title"] = "Index";
 }
 
+<h1>Zadania do wykonania</h1>
 
 <p>
     <a asp-action="Create">Utwórz nowe zadanie do wykonania</a>
 </p>
-    <form method="get" asp-action="Index">
-        <p>
-            <input type="search" placeholder="Podaj nazwę zadania" value="@ViewData["Gettodolistdetails"]" name="Tasksearch" style="width:500px;" />
-            <input type="submit" value="Wyszukaj" class="btn btn-primary"/>
-            <a asp-action="Index">Pokaż wszystkie zadania</a>
-        </p>
-    </form>
+<form method="get" asp-action="Index">
+    <p>
+        <input type="search" placeholder="Podaj nazwę zadania" value="@ViewData["Gettodolistdetails"]" name="Tasksearch" style="width:500px;" />
+        <input type="submit" value="Wyszukaj" class="btn btn-primary" />
+        <a asp-action="Index">Pokaż wszystkie zadania</a>
+    </p>
+</form>
+
 <table class="table">
     <thead>
         <tr>
             <th>
                 <a asp-action="Index" asp-route-sortingtask="@ViewData["Sortingtask"]">Lista zadań</a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortingproject="@ViewData["Sortingproject"]">Przypisany projekt</a>
             </th>
             <th></th>
         </tr>
@@ -29,14 +34,16 @@
         {
             <tr>
                 <td>
-                    @item.Content
+                    @Html.DisplayFor(modelItem => item.Content)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Projectlist.Project)
                 </td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.TodoListId">Edytuj</a> |
                     <a asp-action="Delete" asp-route-id="@item.TodoListId">Usuń</a>
                 </td>
             </tr>
-            
         }
     </tbody>
 </table>

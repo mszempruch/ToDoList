@@ -1,0 +1,32 @@
+﻿@model ToDoList.Models.TodoList
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+
+<h3>Czy jesteś pewny/a, że chcesz usunąć to zadanie?</h3>
+<div>
+    
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            Nazwa zadania:
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Content)
+        </dd>
+        <dt class = "col-sm-2">
+            Nazwa projektu:
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Projectlist.Project)
+        </dd class>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="TodoListId" />
+        <input type="submit" value="Usuń" class="btn btn-danger" /> |
+        <a asp-action="Index">Powrót do listy zadań</a>
+    </form>
+</div>
